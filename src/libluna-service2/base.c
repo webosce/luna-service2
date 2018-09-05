@@ -800,7 +800,7 @@ LSErrorLogDefault(const char *message_id, LSError *lserror)
 void
 LSErrorFree(LSError *lserror)
 {
-    if (lserror)
+    if (LSErrorIsSet(lserror))
     {
         LSERROR_CHECK_MAGIC(lserror);
         g_free(lserror->message);
