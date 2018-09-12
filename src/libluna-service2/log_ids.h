@@ -142,6 +142,7 @@
 #define MSGID_LS_QUEUE_ERROR                    "LS_QUEUE"              /** Message queue error */
 #define MSGID_LS_REPLY_TOK                      "LS_REPLY_TOK"          /** Getting reply token for message type */
 #define MSGID_LS_REQUEST_NAME                   "LS_REQ_NAME"           /** Error during name request */
+#define MSGID_LS_RETURN_IF_FAIL                 "LS_RETURN_IF_FAIL"     /** Return value if expression is False */
 #define MSGID_LS_SEND_ERROR                     "LS_SEND"               /** Sending error */
 #define MSGID_LS_SERIAL_ERROR                   "LS_SERIAL"             /** Serial map error */
 #define MSGID_LS_SHARED_MEMORY_ERR              "LS_SHM"                /** Shared memory error*/
