@@ -68,6 +68,31 @@ do {                    \
     }                    \
 } while (0)
 
+#define LS_RETURN_IF_FAIL(_expr) \
+do {                             \
+    if (!(_expr)) {              \
+        LOG_LS_ERROR(MSGID_LS_RETURN_IF_FAIL, 4,          \
+                     PMLOGKS("COND", #_expr),             \
+                     PMLOGKS("FUNC", __FUNCTION__),       \
+                     PMLOGKS("FILE" , LS__FILE__BASENAME),\
+                     PMLOGKFV("LINE", "%d", __LINE__),    \
+                     "%s: failed", #_expr);               \
+        return;          \
+    }                    \
+} while (0)
+
+#define LS_RETURN_VAL_IF_FAIL(_expr, _val) \
+do {                                       \
+    if (!(_expr)) {                        \
+        LOG_LS_ERROR(MSGID_LS_RETURN_IF_FAIL, 4,          \
+                     PMLOGKS("COND", #_expr),             \
+                     PMLOGKS("FUNC", __FUNCTION__),       \
+                     PMLOGKS("FILE" , LS__FILE__BASENAME),\
+                     PMLOGKFV("LINE", "%d", __LINE__),    \
+                     "%s: failed", #_expr);               \
+        return _val;     \
+    }                    \
+} while (0)
 
 #define LS_MAGIC(typestring) \
 (  ( ((typestring)[sizeof(typestring)*7/8] << 24) | \
