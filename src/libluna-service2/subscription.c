@@ -1064,7 +1064,11 @@ LSSubscriptionAcquire(LSHandle *sh, const char *key,
 void
 LSSubscriptionRelease(LSSubscriptionIter *iter)
 {
-    GSList *seen_iter = iter->seen_messages;
+    GSList *seen_iter;
+
+    LS_RETURN_IF_FAIL(iter != NULL);
+
+    seen_iter = iter->seen_messages;
     while (seen_iter)
     {
         LSMessage *msg = (LSMessage*)seen_iter->data;
@@ -1090,6 +1094,8 @@ LSSubscriptionRelease(LSSubscriptionIter *iter)
 bool
 LSSubscriptionHasNext(LSSubscriptionIter *iter)
 {
+    LS_RETURN_VAL_IF_FAIL(iter != NULL, false);
+
     if (!iter->tokens)
     {
         return false;
@@ -1112,6 +1118,8 @@ LSSubscriptionNext(LSSubscriptionIter *iter)
 {
     _Subscription *subs = NULL;
     LSMessage *message = NULL;
+
+    LS_RETURN_VAL_IF_FAIL(iter != NULL, NULL);
 
     iter->index++;
     const char *tok = _SubListGet(iter->tokens, iter->index);
@@ -1143,7 +1151,11 @@ LSSubscriptionNext(LSSubscriptionIter *iter)
 void
 LSSubscriptionRemove(LSSubscriptionIter *iter)
 {
-    const char *tok = _SubListGet(iter->tokens, iter->index);
+    const char *tok;
+
+    LS_RETURN_IF_FAIL(iter != NULL);
+
+    tok = _SubListGet(iter->tokens, iter->index);
     if (tok)
     {
         _CatalogRemoveToken(iter->catalog, tok, false);
